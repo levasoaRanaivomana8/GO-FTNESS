@@ -1,0 +1,14 @@
+<?php
+declare(strict_types=1);
+namespace App\Controllers; use Core\Controller; use Core\Auth; use App\Models\App;
+final class PlanningController extends Controller {
+ private function view(string $v,array $d=[]): void { $this->render($v,array_merge(['user'=>Auth::user(),'baseUrl'=>rtrim(BASE_URL,'/'),'csrf'=>$this->csrfToken(),'flash'=>$this->pullFlash()],$d)); }
+ public function admin(): void { Auth::requireRole('admin'); $this->view('admin/planning/index',['title'=>'Planning','active'=>'admin_planning','rows'=>App::planning()]); }
+ public function create(): void { Auth::requireRole('admin'); $this->requireCsrf(); try{ App::createPlanning($_POST,Auth::user()); $this->flash('success','Planning créé et notification envoyée au Gérant.'); }catch(\Throwable $e){ $this->flash('danger',$e->getMessage()); } $this->redirect('/admin/planning'); }
+ public function update(): void { Auth::requireRole('admin'); $this->requireCsrf(); try{ App::updatePlanning((int)$_POST['idplanning'],$_POST,Auth::user()); $this->flash('success','Planning modifié.'); }catch(\Throwable $e){ $this->flash('danger',$e->getMessage()); } $this->redirect('/admin/planning'); }
+ public function cancel(): void { Auth::requireRole('admin'); $this->requireCsrf(); try{ App::cancelPlanning((int)$_POST['idplanning'],Auth::user(),trim((string)($_POST['motif']??''))); $this->flash('warning','Planning annulé.'); }catch(\Throwable $e){ $this->flash('danger',$e->getMessage()); } $this->redirect('/admin/planning'); }
+ public function gerant(): void { Auth::requireRole('gerant'); $this->view('gerant/planning/index',['title'=>'Planning','active'=>'gerant_planning','rows'=>App::planning(),'abonnes'=>App::planningEligibleAbonnes()]); }
+ public function participate(): void { Auth::requireRole('gerant'); $this->requireCsrf(); try{ $r=App::participate((int)$_POST['idplanning'],(int)$_POST['idabonne'],Auth::user(),trim((string)($_POST['mode_paiement']??'Espèces'))); if(!empty($r['gratuit'])){ $this->flash('success','Cette abonnée est active sur annuel : inscription validée gratuitement.'); $this->redirect('/gerant/planning'); } $this->flash('success','Participant inscrit et paiement encaissé. Cliquez sur la notification pour ouvrir la facture.'); $this->redirect('/gerant/planning?facture='.(int)$r['idfacture']); }catch(\Throwable $e){ $this->flash('danger',$e->getMessage()); $this->redirect('/gerant/planning'); } }
+ public function cancelParticipant(): void { Auth::requireRole('gerant'); $this->requireCsrf(); try{ App::cancelFreePlanningParticipant((int)($_POST['idparticipant']??0),Auth::user()); $this->flash('success','Inscription gratuite annulée.'); }catch(\Throwable $e){ $this->flash('danger',$e->getMessage()); } $this->redirect('/gerant/planning'); }
+ public function participants(): void { Auth::requireRole('gerant'); header('Content-Type: application/json; charset=utf-8'); echo json_encode(App::planningParticipants((int)($_GET['id']??0)),JSON_UNESCAPED_UNICODE); }
+}
