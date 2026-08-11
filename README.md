@@ -1,27 +1,32 @@
-# GO-FITNES
+# GO-FTNESS
+Application de gestion pour Salle de Sport / Fitness développée en PHP.
 
-Application web de gestion pour salle de sport.  
-Projet développé en PHP Natif avec architecture MVC.
+GO-FTNESS permet aux gérants de salle de sport de gérer facilement les abonnés, les abonnements et de suivre les recettes quotidiennes et mensuelles.
 
-## À propos
-GO-FITNES permet de gérer le quotidien d'une salle de sport : 
-les adhérents, les abonnements, les séances, les coachs et la caisse. 
-L'objectif était de créer un outil simple, rapide et facile à prendre en main.
+## ✨ Fonctionnalités principales
 
-## Fonctionnalités principales
-- **Gestion des membres** : Ajout, modification, historique des paiements
-- **Gestion des abonnements** : Types d'abonnement, dates, renouvellement auto
-- **Planning** : Création de séances et attribution aux coachs
-- **Espace Admin** : Dashboard avec statistiques
-- **Authentification** : Système de login avec différents rôles
+### 1. Gestion des Abonnés et Abonnements
+- Enregistrement des nouveaux abonnés
+- Renouvellement d'abonnement / Réabonnement
+- Calcul automatique des `jours restants` pour chaque client
+- Génération de Facture pour les abonnés
 
-## Stack Technique
-- **Backend** : PHP 8, PDO MySQL
-- **Architecture** : MVC
-- **Frontend** : HTML5, CSS3, JavaScript Vanilla
-- **Gestion des dépendances** : Composer
+### 2. Gestion des Recettes
+- Suivi de la `Recette par jour`
+- Suivi de la `Recette par mois`
+- Tableaux de bord pour le reporting
 
-## Installation en local
+### 3. Système de rôles
+- **Admin** : Création et modification des tarifs, gestion complète des paramètres
+- **Gérant** : Création des abonnés, gestion des réabonnements, émission des factures
+
+## 🛠️ Technologies utilisées
+- **Backend**: PHP 8, PDO MySQL, Architecture MVC
+- **Frontend**: HTML5, CSS3, JavaScript Vanilla
+- **Gestion des dépendances**: Composer
+- **Base de données**: MySQL
+
+## ⚙️ Installation
 1.  Cloner le projet
     ```bash
     git clone https://github.com/levasoaRanaivomana8/GO-FTNESS.git
