@@ -1,0 +1,12 @@
+# TEST
+ErrorDocument 404 "HTACCESS_OK_404"
+RewriteEngine On
+
+RewriteBase /go-fitness/public/
+
+# Avela hiasa ny fichiers tena izy
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Ny sisa rehetra alefa any index.php
+RewriteRule ^ index.php [QSA,L]
