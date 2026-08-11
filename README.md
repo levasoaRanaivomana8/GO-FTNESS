@@ -30,7 +30,7 @@ Liste avec calcul automatique des jours restants et statut
 ![Liste Abonnés](assets/FENabonnes.PNG)
 
 ##  Technologies utilisées
-- **Backend**: PHP Natif
+- **Backend**: PHP
 - **Base de données**: MySQL
 - **Frontend**: HTML, CSS, JavaScript
 
