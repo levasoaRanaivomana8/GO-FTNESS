@@ -1,0 +1,596 @@
+:root{
+  --bg:#0b0f14;
+  --panel:#0f141b;
+  --panel2:#121a24;
+  --line:rgba(255,255,255,.10);
+  --muted:rgba(255,255,255,.65);
+  --text:#ffffff;
+  --danger:#e11d2e;
+  --blue:#3b82f6;
+  --brown:#a16207;
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
+  --radius:18px;
+  --radius-sm:12px;
+  --sidebar-w: 260px;
+  --sidebar-mini: 84px;
+}
+
+html, body{ height:100%; }
+body{
+  background:
+    radial-gradient(1200px 600px at 20% 10%, rgba(225,29,46,.14), transparent 60%),
+    radial-gradient(900px 500px at 80% 20%, rgba(59,130,246,.10), transparent 55%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* =========================================================
+   MAIN CONTENT DEFAULT
+   - Pages (contenu) en BLANC pour une meilleure lisibilité
+   - Sidebar / Topbar / Footer restent dark premium
+   ========================================================= */
+.gf-main{
+  background:#ffffff;
+  color:#0b0f14;
+}
+
+.gf-main .container{ background:#ffffff; }
+
+/* Lisibilité globale sur fond blanc (évite textes "light" invisibles) */
+.gf-main h1,.gf-main h2,.gf-main h3,.gf-main h4,.gf-main h5,.gf-main h6{ color:#0b0f14; }
+.gf-main p,.gf-main span,.gf-main label,.gf-main small{ color:#111827; }
+.gf-main .text-muted{ color:#6b7280 !important; }
+.gf-main .text-light,
+.gf-main .text-white,
+.gf-main .text-secondary{ color:#111827 !important; }
+
+/* Bootstrap: cartes / surfaces */
+.gf-main .card,
+.gf-main .gf-card{
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,.08);
+}
+
+/* Inputs sur fond blanc (override des styles dark globaux) */
+.gf-main .form-control,
+.gf-main .form-select{
+  background:#ffffff !important;
+  border:1px solid rgba(0,0,0,.12) !important;
+  color:#0b0f14 !important;
+}
+.gf-main .form-control::placeholder{ color:#9ca3af !important; }
+.gf-main .input-group-text{
+  background:#ffffff !important;
+  border:1px solid rgba(0,0,0,.12) !important;
+  color:rgba(11,15,20,.70) !important;
+}
+
+/* Tables : force version claire même si table-dark existe dans les vues */
+.gf-main .table{ color:#0b0f14; }
+.gf-main .table-dark{ --bs-table-bg:#ffffff; --bs-table-color:#0b0f14; --bs-table-striped-bg:#f8fafc; --bs-table-border-color:rgba(0,0,0,.10); }
+.gf-main .table-dark th,
+.gf-main .table-dark td{ color:#0b0f14 !important; }
+.gf-main .table thead{ background:#f1f5f9; }
+
+/* Boutons outline-light sur fond blanc */
+.gf-main .btn-outline-light{
+  border-color: rgba(0,0,0,.18) !important;
+  color: #0b0f14 !important;
+}
+.gf-main .btn-outline-light:hover{ background:#0b0f14 !important; color:#ffffff !important; }
+
+
+/* Charts: évite le "canvas qui grandit à l'infini" (boucle de resize)
+   en forçant une hauteur stable pour le parent. */
+.gf-chart-box{ height: 280px; }
+.gf-chart-box--sm{ height: 220px; }
+.gf-chart-box canvas{ width:100% !important; height:100% !important; }
+
+/* helpers */
+.gf-muted{ color:var(--muted)!important; }
+.gf-shadow{ box-shadow: var(--shadow)!important; }
+.gf-fade-in{ animation: gfFadeIn .35s ease-out both; }
+@keyframes gfFadeIn{ from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+
+/* cards */
+.gf-card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 35%), var(--panel);
+  border:1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* forms */
+.form-control{
+  background:#0b0f14 !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  color:#fff !important;
+  border-radius:var(--radius-sm) !important;
+  padding:.75rem .9rem !important;
+}
+.form-control:focus{
+  border-color: var(--danger) !important;
+  box-shadow:0 0 0 .2rem rgba(225,29,46,.25) !important;
+}
+.input-group-text{
+  background:#0b0f14 !important;
+  border:1px solid rgba(255,255,255,.14) !important;
+  color:rgba(255,255,255,.75) !important;
+  border-radius:var(--radius-sm) !important;
+}
+
+/* buttons */
+.btn-danger{
+  background:var(--danger) !important;
+  border-color:var(--danger) !important;
+  border-radius:var(--radius-sm) !important;
+  padding:.75rem 1rem !important;
+  font-weight:600 !important;
+}
+.btn-danger:hover{ filter:brightness(.95); }
+
+/* loader */
+.gf-loader{
+  position:fixed; inset:0;
+  display:flex; align-items:center; justify-content:center;
+  background: rgba(11,15,20,.75);
+  backdrop-filter: blur(6px);
+  z-index:9999;
+}
+.gf-spinner{
+  width:44px;height:44px;border-radius:999px;
+  border:4px solid rgba(255,255,255,.15);
+  border-top-color: var(--danger);
+  animation: gfSpin .8s linear infinite;
+}
+@keyframes gfSpin{ to{transform:rotate(360deg);} }
+
+/* brand dot */
+.gf-dot{
+  width:10px;height:10px;border-radius:999px;background:var(--danger);
+  display:inline-block;margin-right:10px;
+  box-shadow:0 0 0 6px rgba(225,29,46,.12);
+}
+
+/* =========================================================
+   LAYOUT: Sidebar + Main
+   ========================================================= */
+.gf-app{ min-height:100vh; }
+
+.gf-sidebar{
+  position:fixed; top:0; left:0; bottom:0;
+  width: var(--sidebar-w);
+  background: linear-gradient(180deg, rgba(255,255,255,.04), transparent 30%), var(--panel);
+  border-right:1px solid var(--line);
+  padding:18px 14px;
+  transition: width .2s ease;
+  overflow:hidden;
+  z-index:1000;
+}
+
+.gf-sidebar.is-collapsed{ width: var(--sidebar-mini); }
+
+.gf-brand{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.06);
+  background: rgba(255,255,255,.02);
+}
+
+.gf-brand-title{ font-weight:800; letter-spacing:.3px; }
+.gf-brand-sub{ font-size:12px; color:var(--muted); }
+
+.gf-nav{ margin-top:16px; display:flex; flex-direction:column; gap:8px; }
+
+.gf-nav a{
+  display:flex; align-items:center; gap:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  text-decoration:none;
+  color: rgba(255,255,255,.86);
+  border:1px solid transparent;
+  transition: all .15s ease;
+}
+
+.gf-nav a:hover{
+  background: rgba(255,255,255,.04);
+  border-color: rgba(255,255,255,.08);
+}
+
+.gf-nav .active{
+  background: rgba(225,29,46,.12);
+  border-color: rgba(225,29,46,.22);
+}
+
+.gf-ico{
+  width:34px; height:34px;
+  display:flex; align-items:center; justify-content:center;
+  border-radius:12px;
+  background: rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  flex:0 0 auto;
+}
+
+.gf-sidebar.is-collapsed .gf-text{ display:none; }
+.gf-sidebar.is-collapsed .gf-brand-sub{ display:none; }
+.gf-sidebar.is-collapsed .gf-brand-title{ display:none; }
+
+.gf-main{
+  margin-left: var(--sidebar-w);
+  transition: margin-left .2s ease;
+  min-height:100vh;
+}
+
+/* =========================================================
+   LIGHT SURFACE (ex: Admin Dashboard souhaité fond blanc)
+   - On garde la sidebar / shell premium
+   - On rend le contenu principal clair + lisible
+   ========================================================= */
+.gf-main.gf-main-light{
+  background: #f6f7fb;
+  color:#0b0f14;
+}
+
+.gf-main.gf-main-light .gf-topbar{
+  background: rgba(246,247,251,.85);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+
+.gf-main.gf-main-light .gf-muted{ color: rgba(11,15,20,.55)!important; }
+
+.gf-main.gf-main-light .gf-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 18px 50px rgba(0,0,0,.10);
+}
+
+.gf-main.gf-main-light .form-control,
+.gf-main.gf-main-light .form-select{
+  background:#fff !important;
+  border:1px solid rgba(0,0,0,.12) !important;
+  color:#0b0f14 !important;
+}
+
+.gf-main.gf-main-light .input-group-text{
+  background:#fff !important;
+  border:1px solid rgba(0,0,0,.12) !important;
+  color:rgba(11,15,20,.70) !important;
+}
+
+.gf-main.gf-main-light .btn-outline-light{
+  border-color: rgba(0,0,0,.15) !important;
+  color: #0b0f14 !important;
+}
+
+.gf-main.gf-main-light .btn-outline-light:hover{
+  background: rgba(0,0,0,.05) !important;
+}
+
+/* =========================================================
+   WHITE CONTENT (demande)
+   - Sidebar / Topbar / Footer restent dark premium
+   - Le contenu (main) devient BLANC + très lisible
+   ========================================================= */
+.gf-main.gf-main-white{
+  /* Force le blanc même si le body a un background premium */
+  background:#ffffff !important;
+  color:#0b0f14;
+}
+
+/* Le container Bootstrap doit rester sur fond blanc (sinon on voit le bg du body) */
+.gf-main.gf-main-white .container{
+  background:#ffffff;
+}
+
+/* Sur fond blanc, on garde la topbar dark mais plus lisible */
+.gf-main.gf-main-white .gf-topbar{
+  background: rgba(11,15,20,.86);
+  border-bottom:1px solid rgba(0,0,0,.08);
+}
+
+.gf-main.gf-main-white .gf-muted,
+.gf-main.gf-main-white .text-muted{
+  color: rgba(11,15,20,.55) !important;
+}
+
+.gf-main.gf-main-white .gf-card{
+  background:#ffffff;
+  border: 1px solid rgba(0,0,0,.10);
+  box-shadow: 0 18px 50px rgba(0,0,0,.10);
+}
+
+.gf-main.gf-main-white .gf-ico{
+  background: rgba(0,0,0,.04);
+  border:1px solid rgba(0,0,0,.10);
+  color:#0b0f14;
+}
+
+.gf-main.gf-main-white .form-control,
+.gf-main.gf-main-white .form-select{
+  background:#fff !important;
+  border:1px solid rgba(0,0,0,.14) !important;
+  color:#0b0f14 !important;
+}
+
+.gf-main.gf-main-white .input-group-text{
+  background:#fff !important;
+  border:1px solid rgba(0,0,0,.14) !important;
+  color:rgba(11,15,20,.70) !important;
+}
+
+.gf-main.gf-main-white .btn-outline-light{
+  border-color: rgba(0,0,0,.16) !important;
+  color: #0b0f14 !important;
+}
+
+.gf-main.gf-main-white .btn-outline-light:hover{
+  background: rgba(0,0,0,.05) !important;
+}
+
+.gf-main.gf-main-white .table{
+  color:#0b0f14;
+}
+
+/* Bootstrap .table-dark => rendu LIGHT quand on est en gf-main-white */
+.gf-main.gf-main-white .table-dark{
+  --bs-table-bg: #ffffff;
+  --bs-table-color: #0b0f14;
+  --bs-table-border-color: rgba(0,0,0,.10);
+  --bs-table-striped-bg: #f6f7fb;
+  --bs-table-striped-color: #0b0f14;
+  --bs-table-hover-bg: rgba(0,0,0,.04);
+  --bs-table-hover-color: #0b0f14;
+}
+
+.gf-main.gf-main-white .table-dark thead th{
+  background:#f2f4f8;
+  color:#0b0f14;
+  border-bottom:1px solid rgba(0,0,0,.10);
+}
+
+.gf-main.is-collapsed{ margin-left: var(--sidebar-mini); }
+
+.gf-topbar{
+  position:sticky; top:0;
+  z-index:900;
+  backdrop-filter: blur(8px);
+  /* un peu plus opaque => meilleure lisibilité sur fond blanc */
+  background: rgba(11,15,20,.78);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.gf-topbar-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 18px;
+}
+
+.gf-btn-icon{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.03);
+  color:#fff;
+  border-radius:12px;
+  padding:10px 12px;
+}
+
+/* FullCalendar dark premium tweaks */
+.gf-calendar{
+  --fc-border-color: rgba(255,255,255,.12);
+  --fc-page-bg-color: transparent;
+  --fc-neutral-bg-color: rgba(255,255,255,.04);
+  --fc-today-bg-color: rgba(225,29,46,.12);
+  --fc-event-bg-color: rgba(225,29,46,.95);
+  --fc-event-border-color: rgba(225,29,46,1);
+  --fc-event-text-color: #fff;
+}
+.gf-calendar .fc{
+  color: #fff;
+}
+.gf-calendar .fc-toolbar-title{
+  font-weight: 700;
+  letter-spacing: .3px;
+}
+.gf-calendar .fc-button{
+  border-radius: 999px !important;
+}
+
+/* modal */
+.gf-modal{
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)), var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: #fff;
+}
+.gf-modal .modal-header,
+.gf-modal .modal-footer{
+  border-color: var(--line);
+}
+.gf-btn-icon:hover{ background: rgba(255,255,255,.06); }
+
+@media (max-width: 992px){
+  .gf-sidebar{ transform: translateX(-100%); width: var(--sidebar-w); }
+  .gf-sidebar.is-open{ transform: translateX(0); }
+  .gf-main{ margin-left: 0; }
+  .gf-main.is-collapsed{ margin-left:0; }
+}
+
+/* Login logo */
+.gf-login-logo{
+  display:block;
+  margin:0 auto 20px auto;
+  height:110px;
+  object-fit:contain;
+  filter: drop-shadow(0 8px 25px rgba(225,29,46,.35));
+  transition: transform .25s ease;
+}
+
+.gf-login-logo:hover{
+  transform: scale(1.05);
+}
+
+.gf-link{
+  color: var(--danger);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+.gf-link:hover{
+  text-decoration: underline;
+  opacity: .9;
+}
+
+.gf-brand-title {
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    /* Noir principal */
+    color: #0f0f0f;
+
+    /* Gold subtle outline effect */
+    text-shadow:
+        0.5px 0.5px 0 rgba(212, 175, 55, 0.35),
+        -0.5px -0.5px 0 rgba(184, 134, 11, 0.25);
+}
+
+#togglePasswordBtn {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/* =========================================================
+   GO-FITNESS — TOPBAR PREMIUM GRADIENT (Rouge → Noir/Bleu)
+   Sidebar/Footer restent dark. Main content reste blanc.
+   ========================================================= */
+.gf-topbar{
+  background: linear-gradient(90deg,#7a0c0c 0%,#1a0f1f 45%,#0f172a 100%);
+  color:#fff !important;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+}
+
+.gf-topbar .gf-topbar-inner,
+.gf-topbar h1,.gf-topbar h2,.gf-topbar h3,.gf-topbar h4,.gf-topbar h5,
+.gf-topbar p,.gf-topbar span,.gf-topbar small{
+  color:#fff !important;
+}
+
+.gf-topbar .gf-muted,
+.gf-topbar .text-muted{
+  color: rgba(226,232,240,.95) !important;
+}
+
+.gf-topbar .text-light,
+.gf-topbar .text-white{
+  color:#fff !important;
+}
+
+/* Force blanc pour les textes du topbar (demande utilisateur) */
+.gf-topbar .gf-topbar-sub,
+.gf-topbar .gf-topbar-role{
+  color:#ffffff !important;
+}
+
+.gf-topbar .gf-btn-icon{
+  color:#fff !important;
+  border-color: rgba(255,255,255,.35);
+}
+
+.gf-topbar .gf-btn-icon:hover{
+  background: rgba(255,255,255,.14);
+}
+
+
+/* Corrections v5 */
+.gf-main .table{border-collapse:separate;border-spacing:0;}
+.gf-main .table th,.gf-main .table td{border-bottom:1px solid rgba(15,23,42,.10)!important;}
+.gf-main .table-striped>tbody>tr:nth-of-type(odd)>*{background-color:#ffffff!important;}
+.gf-main .table-striped>tbody>tr:nth-of-type(even)>*{background-color:#f8fafc!important;}
+.gf-main .table-hover>tbody>tr:hover>*{background-color:#eef6ff!important;}
+.gf-row-actions{display:none;gap:.35rem;align-items:center;}
+.gf-row-actions.is-visible{display:inline-flex;}
+.gf-options-btn{width:34px;height:30px;padding:0;font-weight:800;}
+.gf-temp-notice{transition:opacity .25s ease, transform .25s ease;}
+.gf-temp-notice.gf-hide{opacity:0;transform:translateY(-6px);pointer-events:none;}
+.gf-stat-card{position:relative;overflow:hidden;border:0!important;border-radius:20px!important;padding:18px!important;box-shadow:0 18px 45px rgba(15,23,42,.13)!important;min-height:115px;background:linear-gradient(135deg,#ffffff 0%,#f8fafc 100%)!important;}
+.gf-stat-card:before{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:999px;background:rgba(225,29,46,.10);}
+.gf-stat-card .gf-stat-icon{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#fff;background:linear-gradient(135deg,#dc2626,#0f172a);box-shadow:0 10px 22px rgba(220,38,38,.22);}
+.gf-stat-card .gf-stat-label{font-size:.82rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;}
+.gf-stat-card .gf-stat-value{font-size:1.85rem;font-weight:900;color:#0f172a;line-height:1.15;}
+.gf-chart-fixed{height:300px;position:relative;}
+.gf-chart-fixed canvas{width:100%!important;height:100%!important;}
+.gf-abonne-list{max-height:360px;overflow:auto;border:1px solid rgba(0,0,0,.08);border-radius:12px;}
+
+/* Corrections v6 */
+.gf-motif-input{width:210px!important;margin-left:8px;}
+.gf-mini-chart{height:170px;width:100%;}
+.gf-tarif-card{border-radius:20px!important;border:1px solid rgba(15,23,42,.10)!important;box-shadow:0 18px 45px rgba(15,23,42,.10)!important;background:linear-gradient(180deg,#ffffff,#f8fafc)!important;}
+.gf-tarif-line{padding:12px;border-radius:14px;background:#ffffff;border:1px solid rgba(15,23,42,.08);box-shadow:0 8px 22px rgba(15,23,42,.06);}
+.gf-type-card{border-radius:20px!important;}
+.gf-action-row{cursor:pointer;}
+.gf-row-actions{transition:opacity .2s ease;}
+.gf-live-search:focus{box-shadow:0 0 0 .2rem rgba(59,130,246,.18)!important;border-color:#3b82f6!important;}
+
+
+/* Corrections v7: actions cachées par défaut, visibles seulement via JS, puis auto-masquées */
+.gf-row-actions{display:none!important;gap:.35rem;align-items:center;opacity:0;transform:translateY(-2px);transition:opacity .18s ease,transform .18s ease;}
+.gf-row-actions.is-visible{display:inline-flex!important;opacity:1;transform:translateY(0);}
+.gf-action-row{cursor:pointer;}
+.gf-action-row.gf-action-open{background:#fff7ed!important;}
+.gf-temp-notice.gf-hide,[data-auto-hide].gf-hide{opacity:0!important;transform:translateY(-8px)!important;pointer-events:none!important;transition:opacity .28s ease,transform .28s ease;}
+
+
+/* GO-FITNESS v9 - actions tables: cachées par défaut, visibles uniquement par JS */
+.gf-row-actions{display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;gap:.35rem;align-items:center;transform:translateY(-2px);transition:opacity .18s ease,transform .18s ease,visibility .18s ease;}
+.gf-row-actions.is-visible{display:inline-flex!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:translateY(0);}
+.gf-action-row{cursor:pointer;}
+.gf-action-row.gf-action-open>*{background-color:#fff7ed!important;}
+.gf-options-btn{display:inline-flex!important;align-items:center;justify-content:center;width:34px;height:30px;padding:0;font-weight:800;}
+
+
+/* GO-FITNESS v10 - actions sans bouton ⋮ et sans déplacement des lignes */
+.gf-options-btn{display:none!important;}
+.gf-action-header,.gf-action-cell{width:210px!important;min-width:210px!important;max-width:210px!important;white-space:nowrap!important;}
+.gf-action-cell{position:relative!important;}
+.gf-row-actions{display:inline-flex!important;gap:.35rem!important;align-items:center!important;min-width:190px!important;min-height:32px!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;transform:none!important;transition:opacity .18s ease,visibility .18s ease!important;margin-top:0!important;}
+.gf-row-actions.is-visible{display:inline-flex!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;transform:none!important;}
+.gf-action-row.gf-action-open>*{background-color:#fff7ed!important;}
+.gf-row-actions .btn{min-width:78px!important;}
+
+/* GO-FITNESS v14 - dashboard gérant et planning */
+.gf-dashboard-filter-grid{display:grid;grid-template-columns:minmax(120px,.9fr) minmax(260px,2.2fr) minmax(110px,.8fr) minmax(110px,.8fr) minmax(130px,.9fr);gap:12px;align-items:end;width:100%;}
+.gf-dashboard-filter-grid .gf-filter-cell{min-width:0;}.gf-dashboard-filter-grid label{display:block;font-size:.78rem;font-weight:700;color:#64748b;margin-bottom:4px;}.gf-dashboard-filter-grid input,.gf-dashboard-filter-grid select,.gf-dashboard-filter-grid button{height:36px;border-radius:12px!important;}.gf-dashboard-filter-grid .gf-filter-search input{width:100%;}
+.gf-message-pill.gf-days-critical{background:#7f0012!important;color:#fff!important;border-color:#7f0012!important;}.gf-message-pill.gf-days-danger{background:#ffd4da!important;color:#a60018!important;border-color:#ff8fa1!important;}.gf-message-pill.gf-days-warning{background:#fff0c2!important;color:#8a5b00!important;border-color:#ffd86b!important;}.gf-message-pill.gf-days-light-success{background:#dff8e9!important;color:#146c43!important;border-color:#9fe2b8!important;}.gf-message-pill.gf-days-success{background:#0f6b38!important;color:#fff!important;border-color:#0f6b38!important;}.gf-message-pill.gf-days-expired{background:#e5e7eb!important;color:#4b5563!important;border-color:#d1d5db!important;}
+@media(max-width:992px){.gf-dashboard-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.gf-dashboard-filter-grid .gf-filter-search{grid-column:span 2;}}@media(max-width:576px){.gf-dashboard-filter-grid{grid-template-columns:1fr;}.gf-dashboard-filter-grid .gf-filter-search{grid-column:auto;}}
+
+/* GO-FITNESS v15 - recherche gérant plus propre */
+.gf-dashboard-live-filters{grid-template-columns:1fr 1.7fr 1fr 1fr 1fr!important;align-items:end!important;}
+.gf-dashboard-live-filters .gf-filter-cell input,
+.gf-dashboard-live-filters .gf-filter-cell select,
+.gf-dashboard-live-filters .gf-filter-cell button{width:100%!important;height:40px!important;box-sizing:border-box!important;}
+.gf-dashboard-live-filters .gf-filter-cell label{min-height:18px!important;}
+.gf-planning-search-wrap .input-group-text,
+.gf-planning-search-wrap .btn{height:42px!important;display:flex;align-items:center;}
+.gf-planning-search-wrap .form-control{height:42px!important;}
+.gf-planning-abonne-item{transition:background-color .15s ease;}
+.gf-planning-abonne-item:hover{background:#f8fafc!important;}
+@media(max-width:992px){.gf-dashboard-live-filters{grid-template-columns:repeat(2,minmax(0,1fr))!important;}.gf-dashboard-live-filters .gf-filter-search{grid-column:span 2!important;}}
+@media(max-width:576px){.gf-dashboard-live-filters{grid-template-columns:1fr!important;}.gf-dashboard-live-filters .gf-filter-search{grid-column:auto!important;}}
+
+/* GO-FITNESS v21 Admin refinements */
+.gf-admin-hero-readable{
+  background:linear-gradient(135deg,#ffffff 0%,#f8fafc 55%,#eef2ff 100%)!important;
+  border:1px solid rgba(15,23,42,.10)!important;
+  border-radius:20px!important;
+  padding:22px 24px!important;
+  box-shadow:0 16px 40px rgba(15,23,42,.08)!important;
+  color:#0f172a!important;
+}
+.gf-admin-hero-readable h1{color:#0f172a!important;text-shadow:none!important;font-weight:900!important;}
+.gf-admin-hero-readable .gf-admin-hero-sub{color:#475569!important;font-weight:600!important;}
+.gf-revenue-card{min-height:150px;}
+.gf-admin-list-card table th,.gf-admin-list-card table td{white-space:nowrap;}
+.gf-planning-date-col{min-width:125px!important;width:125px!important;white-space:nowrap!important;}

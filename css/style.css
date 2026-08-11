@@ -1,0 +1,79 @@
+
+/* V11 - Dashboard gérant: filtre statut, tri visuel et jours restants */
+.gf-status-filter{min-width:190px;font-weight:700;border-radius:12px;}
+.gf-dashboard-list-card .table{margin-bottom:0;}
+.gf-days-pill{display:inline-flex;align-items:center;justify-content:center;min-width:74px;padding:.38rem .65rem;border-radius:999px;font-weight:800;font-size:.85rem;border:1px solid transparent;}
+.gf-days-danger{background:#ffe5e8;color:#b00020;border-color:#ffb3bd;}
+.gf-days-warning{background:#fff3cd;color:#8a5b00;border-color:#ffe08a;}
+.gf-days-info{background:#e7f1ff;color:#084298;border-color:#b6d4fe;}
+.gf-days-success{background:#e7f8ef;color:#0f6b38;border-color:#a8e0bf;}
+.gf-days-expired{background:#eeeeee;color:#555;border-color:#d0d0d0;}
+.gf-days-danger-text{color:#b00020;font-weight:700;}
+.gf-days-warning-text{color:#8a5b00;font-weight:700;}
+.gf-days-info-text{color:#084298;font-weight:700;}
+.gf-days-success-text{color:#0f6b38;font-weight:700;}
+.gf-days-expired-text{color:#666;font-weight:700;}
+.gf-zebra-table tbody tr:nth-child(odd)>*{background-color:rgba(0,0,0,.018)!important;}
+.gf-zebra-table tbody tr:nth-child(even)>*{background-color:rgba(13,110,253,.035)!important;}
+.gf-zebra-table tbody tr:hover>*{background-color:rgba(220,53,69,.075)!important;}
+
+/* V12 - Dashboard gérant et recherche abonnés/paiements */
+.gf-dashboard-filter-form{max-width:900px;}
+.gf-select-search{border-radius:12px;}
+select[size]{min-height:150px;}
+.gf-searchable-table th{white-space:nowrap;}
+
+/* V13 - recherche et statuts gérant */
+.gf-dashboard-filter-form{max-width:980px;align-items:end;}
+.gf-message-pill{display:inline-flex;align-items:center;padding:.38rem .72rem;border-radius:999px;font-weight:800;font-size:.86rem;border:1px solid transparent;white-space:nowrap;}
+.gf-days-critical,.gf-message-pill.gf-days-critical{background:#7f0012!important;color:#fff!important;border-color:#7f0012!important;}
+.gf-days-danger,.gf-message-pill.gf-days-danger{background:#ffd4da!important;color:#a60018!important;border-color:#ff9aaa!important;}
+.gf-days-warning,.gf-message-pill.gf-days-warning{background:#fff0c2!important;color:#8a5b00!important;border-color:#ffd86b!important;}
+.gf-days-light-success,.gf-message-pill.gf-days-light-success{background:#dff8e9!important;color:#146c43!important;border-color:#9fe2b8!important;}
+.gf-days-success,.gf-message-pill.gf-days-success{background:#0f6b38!important;color:#fff!important;border-color:#0f6b38!important;}
+.gf-days-expired,.gf-message-pill.gf-days-expired{background:#e5e7eb!important;color:#4b5563!important;border-color:#d1d5db!important;}
+.gf-top-action{min-width:155px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.gf-search-form input,.gf-search-form select{border-radius:12px;}
+
+/* GO-FITNESS v14 - dashboard gérant et planning */
+.gf-dashboard-filter-grid{
+  display:grid;
+  grid-template-columns: minmax(120px,.9fr) minmax(260px,2.2fr) minmax(110px,.8fr) minmax(110px,.8fr) minmax(130px,.9fr);
+  gap:12px;
+  align-items:end;
+  width:100%;
+}
+.gf-dashboard-filter-grid .gf-filter-cell{min-width:0;}
+.gf-dashboard-filter-grid label{display:block;font-size:.78rem;font-weight:700;color:#64748b;margin-bottom:4px;}
+.gf-dashboard-filter-grid input,.gf-dashboard-filter-grid select,.gf-dashboard-filter-grid button{height:36px;border-radius:12px!important;}
+.gf-dashboard-filter-grid .gf-filter-search input{width:100%;}
+.gf-message-pill.gf-days-critical{background:#7f0012!important;color:#fff!important;border-color:#7f0012!important;}
+.gf-message-pill.gf-days-danger{background:#ffd4da!important;color:#a60018!important;border-color:#ff8fa1!important;}
+.gf-message-pill.gf-days-warning{background:#fff0c2!important;color:#8a5b00!important;border-color:#ffd86b!important;}
+.gf-message-pill.gf-days-light-success{background:#dff8e9!important;color:#146c43!important;border-color:#9fe2b8!important;}
+.gf-message-pill.gf-days-success{background:#0f6b38!important;color:#fff!important;border-color:#0f6b38!important;}
+.gf-message-pill.gf-days-expired{background:#e5e7eb!important;color:#4b5563!important;border-color:#d1d5db!important;}
+@media(max-width:992px){.gf-dashboard-filter-grid{grid-template-columns:repeat(2,minmax(0,1fr));}.gf-dashboard-filter-grid .gf-filter-search{grid-column:span 2;}}
+@media(max-width:576px){.gf-dashboard-filter-grid{grid-template-columns:1fr;}.gf-dashboard-filter-grid .gf-filter-search{grid-column:auto;}}
+
+/* GO-FITNESS v15 - recherche gérant plus propre */
+.gf-dashboard-live-filters{grid-template-columns:1fr 1.7fr 1fr 1fr 1fr!important;align-items:end!important;}
+.gf-dashboard-live-filters .gf-filter-cell input,
+.gf-dashboard-live-filters .gf-filter-cell select,
+.gf-dashboard-live-filters .gf-filter-cell button{width:100%!important;height:40px!important;box-sizing:border-box!important;}
+.gf-dashboard-live-filters .gf-filter-cell label{min-height:18px!important;}
+.gf-planning-search-wrap .input-group-text,
+.gf-planning-search-wrap .btn{height:42px!important;display:flex;align-items:center;}
+.gf-planning-search-wrap .form-control{height:42px!important;}
+.gf-planning-abonne-item{transition:background-color .15s ease;}
+.gf-planning-abonne-item:hover{background:#f8fafc!important;}
+@media(max-width:992px){.gf-dashboard-live-filters{grid-template-columns:repeat(2,minmax(0,1fr))!important;}.gf-dashboard-live-filters .gf-filter-search{grid-column:span 2!important;}}
+@media(max-width:576px){.gf-dashboard-live-filters{grid-template-columns:1fr!important;}.gf-dashboard-live-filters .gf-filter-search{grid-column:auto!important;}}
+
+/* GO-FITNESS v20 - Admin dashboard professionnel */
+.gf-admin-hero{background:linear-gradient(135deg,#111827,#b00020);color:#fff;border-radius:22px;padding:22px 24px;box-shadow:0 16px 35px rgba(0,0,0,.18)}
+.gf-admin-hero .text-muted{color:rgba(255,255,255,.78)!important}
+.gf-admin-stat{border-radius:18px;overflow:hidden;position:relative;min-height:110px}
+.gf-admin-stat:before{content:"";position:absolute;inset:auto -30px -45px auto;width:115px;height:115px;border-radius:50%;opacity:.12;background:currentColor}
+.gf-admin-stat-danger{color:#b00020}.gf-admin-stat-success{color:#146c43}.gf-admin-stat-secondary{color:#4b5563}.gf-admin-stat-primary{color:#0d6efd}
+.gf-admin-stat .text-muted{color:#64748b!important}.gf-chart-fixed{height:260px!important;position:relative}.gf-action-cell{min-width:190px}.gf-row-actions{min-height:34px}
