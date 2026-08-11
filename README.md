@@ -3,7 +3,7 @@
 Application de gestion de salle de sport développée en PHP natif. 
 Permet la gestion des abonnés, des abonnements, des paiements et des factures pour les rôles Admin et Gérant.
 
-## 🚀 Fonctionnalités principales
+##  Fonctionnalités principales
 
 - **Gestion des rôles**: Espace Admin et espace Gérant séparés
 - **Gestion des abonnés**: Ajout, modification, suivi des jours restants
@@ -19,11 +19,11 @@ Page de connexion sécurisée pour Admin et Gérant
 
 ### 2. Dashboard Admin
 Vue globale: Total abonnés, Abonnements actifs, Recettes du jour
-![Dashboard Admin](assets/DashbordAdmin.PNG)
+![Dashboard Admin](assets/DashboardAdmin.PNG)
 
 ### 3. Dashboard Gérant
 Suivi des activités et des abonnés du gérant
-![Dashboard Gérant](assets/DashbordGerant.PNG)
+![Dashboard Gérant](assets/DashboardGerant.PNG)
 
 ### 4. Gestion des Abonnés
 Liste avec calcul automatique des jours restants et statut
